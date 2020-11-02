@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>World Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <h1> Covid-19 world Tracker Application</h1>
+    <p>This application lists the current number of cases reported all over the world</p>
+
+    <div class="jumbo">
+        <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+        <p class="lead">Total cases</p>
+        <hr class="my-4">
+        <p>
+            <span>Total cases reported as of today all over the world</span>
+            <span th:text="${totalNewCases}"></span>
+        </p>
+
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Continent</th>
+            <th>Country</th>
+            <th>Day</th>
+            <th>Population</th>
+            <th>New-Cases</th>
+            <th>Active-Cases</th>
+            <th>Critical-Cases</th>
+            <th>New-Deaths</th>
+            <th>Recovered</th>
+            <th>Total Deaths</th>
+            <th>Total Tested</th>
+            <th>Total Cases</th>
+        </tr>
+        <tr th:each="continentData : ${continent}">
+            <td th:text="${continentData.continent}"></td>
+            <td th:text="${continentData.country}"></td>
+            <td th:text="${continentData.day}"></td>
+            <td th:text="${continentData.population}">0</td>
+            <td th:text="${continentData.cases?.newCases}">0</td>
+            <td th:text="${continentData.cases?.active}">0</td>
+            <td th:text="${continentData.cases?.critical}">0</td>
+            <td th:text="${continentData.deaths?.newDeaths}">0</td>
+            <td th:text="${continentData.cases?.recovered}">0</td>
+            <td th:text="${continentData.deaths?.total}">0</td>
+            <td th:text="${continentData.tests?.total}">0</td>
+            <td th:text="${continentData.cases?.total}">0</td>
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>
